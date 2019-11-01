@@ -1,0 +1,7 @@
+## backups
+*~
+*#
+*.orig
+
+## ignore output folder
+output
