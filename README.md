@@ -4,9 +4,15 @@ Contains a Dockerfile for building an docker image and its container for zephyr.
 
 Setup for _PHYTEC_ **reel board board v2** (display ribbon cable shows: HINK-E0213**A22**)
 
-https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html
-
 Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` inside the docker container.
+
+
+
+## Resources
+
+https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html
+https://www.phytec.eu/product-eu/internet-of-things/reelboard/
+
 
 
 ## Build
@@ -27,6 +33,7 @@ $ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2
 $ docker run -ti --privileged -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2 /bin/bash
 docker $>
 ```
+
 
 ## Target
 
