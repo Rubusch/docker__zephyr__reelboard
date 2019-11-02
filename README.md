@@ -19,8 +19,8 @@ https://www.phytec.eu/product-eu/internet-of-things/reelboard/
 
 ```
 $ cd ./docker/
-$ time docker build --no-cache --tag 19.04 -t rubuschl:zephyr-reelboardv2 .
-$ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2
+$ time docker build --no-cache --tag 19.04 -t zephyr-reelboard-v2:$(date +%Y%m%d%H%M%S) .
+$ time docker run -ti --rm -v $PWD/output:/mnt zephyr-reelboard-v2:20191102182643
 ```
 
 
@@ -30,14 +30,14 @@ $ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2
 
 
 ```
-$ docker run -ti --privileged -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2 /bin/bash
+$ docker run -ti --privileged -v $PWD/output:/mnt zephyr-reelboard-v2:20191102182643 /bin/bash
 docker $>
 ```
 
 
 ## Target
 
-Building the board support package (bsp) for the target, e.g. the nRF52 PCA10040 eval board
+Building the board support package (bsp) for the target, e.g. the reel board board v2
 
 ```
 docker $> ./build.sh
