@@ -9,7 +9,7 @@ source ~/env.sh
 
 ## build for reel board
 cd ~/zephyrproject/zephyr
-source source zephyr-env.sh
+source zephyr-env.sh
 west build -b reel_board_v2 samples/hello_world
 
 ## obtain build artifacts
