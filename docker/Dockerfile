@@ -22,7 +22,7 @@ RUN apt-get install -y   --no-install-recommends git cmake ninja-build gperf \
                          file make gcc gcc-multilib
 
 ## (opt) tools for debugging and working
-RUN apt-get install -y   vim screen minicom
+RUN apt-get install -y   vim screen minicom libpython2.7
 
 RUN locale-gen en_US.UTF-8
 
