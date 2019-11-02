@@ -19,11 +19,10 @@ RUN apt-get install -y   build-essential flex bison libncurses5
 RUN apt-get install -y   --no-install-recommends git cmake ninja-build gperf \
                          ccache dfu-util device-tree-compiler wget python3-pip \
                          python3-setuptools python3-tk python3-wheel xz-utils \
-                         file make gcc gcc-multilib udev
+                         file make gcc gcc-multilib
 
 ## (opt) tools for debugging and working
 RUN apt-get install -y   vim screen minicom
-
 
 RUN locale-gen en_US.UTF-8
 
@@ -58,8 +57,6 @@ RUN cd ~/zephyrproject && pip3 install -r zephyr/scripts/requirements.txt
 
 ################################################################################
 ## specific: PHYTEC reel board settings
-RUN echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' > /etc/udev/rules.d/50-cmsis-dap.rules
-RUN udevadm control --reload-rules
 
 
 ################################################################################
