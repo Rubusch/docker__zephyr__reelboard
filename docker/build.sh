@@ -9,7 +9,7 @@
 ##
 
 ## prepare SDK environment
-source ~/env.sh
+#source ~/env.sh
 
 ## TODO rm
 #export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
@@ -43,14 +43,10 @@ source ~/env.sh
 #source zephyr-env.sh
 #west build -b reel_board samples/hello_world
 
-## TODO check to keep this here, or move into Dockerfile
-echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' > /etc/udev/rules.d/50-cmsis-dap.rules
-udevadm control --reload-rules
-
 ## build for reel board
-cd ~/zephyrproject
-source ~/env.sh
-west build -b reel_board_v2 zephyr/samples/hello_world
+cd ~/zephyrproject/zephyr
+source source zephyr-env.sh
+west build -b reel_board_v2 samples/hello_world
 
 ## obtain build artifacts
 west flash --erase
