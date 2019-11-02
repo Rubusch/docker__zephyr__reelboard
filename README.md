@@ -2,7 +2,7 @@
 
 Contains a Dockerfile for building an docker image and its container for zephyr.
 
-Setup for PHYTEC reel board board v2 (display ribbon cable shows: HINK-E0213A22)
+Setup for _PHYTEC_ **reel board board v2** (display ribbon cable shows: HINK-E0213**A22**)
 
 https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html
 
@@ -13,8 +13,8 @@ Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` insid
 
 ```
 $ cd ./docker/
-$ time docker build --no-cache --tag 19.04 -t rubuschl:zephyr-reelboard .
-$ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboard
+$ time docker build --no-cache --tag 19.04 -t rubuschl:zephyr-reelboardv2 .
+$ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2
 ```
 
 
@@ -24,7 +24,7 @@ $ time docker run -ti --rm -v $PWD/output:/mnt rubuschl:zephyr-reelboard
 
 
 ```
-$ docker run -ti --privileged -v $PWD/output:/mnt rubuschl:zephyr-reelboard /bin/bash
+$ docker run -ti --privileged -v $PWD/output:/mnt rubuschl:zephyr-reelboardv2 /bin/bash
 docker $>
 ```
 
