@@ -61,6 +61,7 @@ RUN cd ~/zephyrproject && pip3 install -r zephyr/scripts/requirements.txt
 
 ################################################################################
 ## build command automation
+COPY env.sh /root/env.sh
 COPY build.sh /root/build.sh
 
 ## automatic execution in command mode
