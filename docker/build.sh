@@ -13,4 +13,4 @@ source zephyr-env.sh
 west build -b reel_board_v2 samples/hello_world
 
 ## obtain build artifacts
-west flash --erase
+west flash
