@@ -1,38 +1,54 @@
-FROM ubuntu:19.04
-
+FROM ubuntu:19.10
+MAINTAINER Lothar Rubusch <lotophagon@protonmail.com>
 WORKDIR /root
 
-## resources
-## https://docs.zephyrproject.org/latest/getting_started/installation_linux.html
-##
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y --purge
 
-## fix missing tzdata setup
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y   tzdata locales
-
-## board support
-RUN apt-get install -y   build-essential flex bison libncurses5
+RUN apt-get install -y   \
+            tzdata \
+            locales \
+            build-essential \
+            flex \
+            bison \
+            libncurses5
 
 ## zephyr setup
-RUN apt-get install -y   --no-install-recommends git cmake ninja-build gperf \
-                         ccache dfu-util device-tree-compiler wget python3-pip \
-                         python3-setuptools python3-tk python3-wheel xz-utils \
-                         file make gcc gcc-multilib
+RUN apt-get install -y   --no-install-recommends \
+            git \
+            cmake \
+            ninja-build \
+            gperf \
+            ccache \
+            dfu-util \
+            device-tree-compiler \
+            wget \
+            python3-pip \
+            python3-setuptools \
+            python3-tk \
+            python3-wheel \
+            xz-utils \
+            file \
+            make \
+            gcc \
+            gcc-multilib
 
 ## (opt) tools for debugging and working
-RUN apt-get install -y   vim screen minicom libpython2.7
+RUN apt-get install -y   \
+            vim \
+            screen \
+            minicom \
+            libpython2.7
 
 RUN locale-gen en_US.UTF-8
-
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-
 ## zephyr SDK
-RUN mkdir -p zephyrproject
+RUN mkdir -p /root/zephyrproject
+
 RUN cd zephyrproject && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.10.3/zephyr-sdk-0.10.3-setup.run && \
     chmod +x zephyr-sdk-0.10.3-setup.run && \
     ./zephyr-sdk-0.10.3-setup.run -- -d ~/zephyr-sdk-0.10.3
