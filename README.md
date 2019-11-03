@@ -19,8 +19,8 @@ https://www.phytec.eu/product-eu/internet-of-things/reelboard/
 
 ```
 $ cd ./docker/
-$ time docker build --no-cache --tag 19.04 -t zephyr-reelboard-v2:$(date +%Y%m%d%H%M%S) .
-$ time docker run -ti --rm -v $PWD/output:/mnt zephyr-reelboard-v2:20191102182643
+$ time docker build --no-cache -t rubuschl/zephyr-reelboard-v2:$(date +%Y%m%d%H%M%S) .
+$ time docker run -ti --rm -v $PWD/output:/mnt rubuschl/zephyr-reelboard-v2:20191102182643
 ```
 
 
@@ -30,7 +30,7 @@ $ time docker run -ti --rm -v $PWD/output:/mnt zephyr-reelboard-v2:2019110218264
 
 
 ```
-$ docker run -ti --privileged -v $PWD/output:/mnt zephyr-reelboard-v2:20191102182643 /bin/bash
+$ docker run -ti --privileged -v $PWD/output:/mnt rubuschl/zephyr-reelboard-v2:20191102182643 /bin/bash
 docker $>
 ```
 
