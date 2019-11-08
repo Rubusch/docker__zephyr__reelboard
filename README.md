@@ -19,8 +19,19 @@ https://www.phytec.eu/product-eu/internet-of-things/reelboard/
 
 ```
 $ cd ./docker/
-$ time docker build --no-cache -t rubuschl/zephyr-reel-board-v2:$(date +%Y%m%d%H%M%S) .
-$ time docker run -ti --rm -v $PWD/output:/mnt rubuschl/zephyr-reel-board-v2:20191102182643
+$ time docker build --build-arg USER=$USER -t rubuschl/zephyr-reel-board-v2:$(date +%Y%m%d%H%M%S) .
+```
+
+
+## Usage
+
+```
+$ docker images
+    REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+    rubuschl/rpi3b-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
+    ubuntu                   xenial              5f2bf26e3524        4 days ago          123MB
+
+$ time docker run -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/mnt rubuschl/zephyr-reel-board-v2:20191104161353
 ```
 
 
@@ -30,7 +41,12 @@ $ time docker run -ti --rm -v $PWD/output:/mnt rubuschl/zephyr-reel-board-v2:201
 
 
 ```
-$ docker run -ti --privileged -v $PWD/output:/mnt rubuschl/zephyr-reel-board-v2:20191102182643 /bin/bash
+$ docker images
+    REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+    rubuschl/rpi3b-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
+    ubuntu                   xenial              5f2bf26e3524        4 days ago          123MB
+
+$ docker run -ti --user=$USER:$USER --workdir=/home/$USER --privileged -v $PWD/output:/mnt rubuschl/zephyr-reel-board-v2:20191104161353 /bin/bash
 docker $>
 ```
 
