@@ -73,7 +73,7 @@ RUN mkdir -p /home/$USER/zephyrproject
 
 RUN cd /home/$USER/zephyrproject && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.10.3/zephyr-sdk-0.10.3-setup.run
 RUN cd /home/$USER/zephyrproject && chmod +x zephyr-sdk-0.10.3-setup.run
-RUN cd /home/$USER/zephyrproject && ./zephyr-sdk-0.10.3-setup.run -- -d ~/zephyr-sdk-0.10.3
+RUN cd /home/$USER/zephyrproject && ./zephyr-sdk-0.10.3-setup.run -- -d /home/$USER/zephyr-sdk-0.10.3
 
 ## set up 'unset preset flags' command script
 RUN echo 'unset CFLAGS CXXFLAGS' >> /etc/profile.d/unset_cflags.sh
