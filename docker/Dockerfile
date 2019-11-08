@@ -83,7 +83,7 @@ RUN echo 'unset CFLAGS CXXFLAGS' >> /etc/profile.d/unset_cflags.sh
 ## get zephyr sources via west (regular way to install)
 
 RUN pip3 install west
-RUN west init zephyrproject
+RUN cd /home/$USER/ && west init zephyrproject
 RUN cd /home/$USER/zephyrproject && west update
 
 ## (opt) use my own branch
