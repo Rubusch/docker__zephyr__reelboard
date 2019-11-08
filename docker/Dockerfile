@@ -47,7 +47,8 @@ RUN apt-get install -y   \
             vim \
             screen \
             minicom \
-            libpython2.7
+            libpython2.7 \
+            sudo
 
 
 ################################################################################
