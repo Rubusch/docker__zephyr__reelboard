@@ -101,6 +101,6 @@ RUN chown $USER:$USER -R /home/$USER
 
 ################################################################################
 ## command mode
-COPY env.sh /root/env.sh
+COPY env.sh /home/$USER/env.sh
 COPY build.sh /usr/local/bin/build.sh
 CMD ["/bin/bash", "/usr/local/bin/build.sh"]
