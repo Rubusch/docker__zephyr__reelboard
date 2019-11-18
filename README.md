@@ -1,10 +1,14 @@
 # docker__zephyr
 
-Contains a Dockerfile for building an docker image and its container for zephyr.
+Contains a Dockerfile for building an docker image and its container for zephyr.  
 
-Setup for _PHYTEC_ **reel board board v2** (display ribbon cable shows: HINK-E0213**A22**)
+![Reelboard Setup](pics/reelboard.jpg)
 
-Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` inside the docker container.
+Setup for _PHYTEC_ **reel board board v2** (display ribbon cable shows: HINK-E0213**A22**)  
+
+![Serial Number](pics/serialnumber.jpg)
+
+Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` inside the docker container.  
 
 
 
