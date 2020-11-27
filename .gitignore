@@ -4,4 +4,4 @@
 *.orig
 
 ## ignore output folder
-output
+zephyrproject
