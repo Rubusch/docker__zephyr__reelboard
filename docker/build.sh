@@ -4,21 +4,53 @@
 ## https://docs.zephyrproject.org/latest/getting_started/index.html#get-the-source-code
 ##
 
-## prepare SDK environment
-source ~/env.sh
+#!/bin/bash -e
 
-## build for reel board
-cd ~/zephyrproject/zephyr
+export MY_HOME="/home/$(whoami)"
+export BUILDDIR="${MY_HOME}/zephyrproject"
+export ZEPHYR_BRANCH="v2.4-branch"
 
-## clean
-test -d build && rm -rf build
 
-## build
-source zephyr-env.sh
-west build -b reel_board_v2 samples/hello_world
+## TODO this may cost performance
+sudo chown ${USER}:${USER} -R ${BUILDDIR}
 
-## obtain build artifacts
-west flash
+if [[ ! -d "${BUILDDIR}/.west" ]]; then
+    cd ${MY_HOME}
+    west init ${BUILDDIR}
+fi
 
-## debugging
-#west debug
+cd ${BUILDDIR}
+west update
+west zephyr-export
+pip3 install --user -r ${BUILDDIR}/zephyr/scripts/requirements.txt
+
+cd ${BUILDDIR}/zephyr
+git checkout ${ZEPHYR_BRANCH}
+
+echo "READY."
+echo
+
+
+### prepare SDK environment
+##source ~/env.sh
+#
+##$ cat ./env.sh 
+#export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+#export ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk-0.10.3
+#
+### build for reel board
+#cd ~/zephyrproject/zephyr
+#
+### clean
+#test -d build && rm -rf build
+#
+### build
+#source zephyr-env.sh
+#west build -b reel_board_v2 samples/hello_world
+#
+### obtain build artifacts
+#west flash
+#
+### debugging
+##west debug
+#
