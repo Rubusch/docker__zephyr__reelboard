@@ -12,7 +12,7 @@ Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` insid
 
 
 
-## Resources
+## References
 
 https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html
 https://www.phytec.eu/product-eu/internet-of-things/reelboard/
