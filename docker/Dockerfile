@@ -111,6 +111,7 @@ RUN mkdir -p /home/$USER/.local/bin && chown $USER:$USER -R /home/$USER/.local
 RUN cd /home/$USER && sudo su $USER -c "export PATH=/home/${USER}/.local/bin:${PATH} && pip3 install --user -U west"
 
 ## zephyr toolchain
+## NB: the following typically fails with 'Error in the pull function' behind a tunneled connection
 RUN cd /home/$USER && sudo su $USER -c "wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZEPHYR_SDK_VERSION}/zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run"
 RUN cd /home/$USER && sudo su $USER -c "chmod +x zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run"
 RUN cd /home/$USER && sudo su $USER -c "./zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run -- -d /usr/local/zephyr-sdk-${ZEPHYR_SDK_VERSION}"
