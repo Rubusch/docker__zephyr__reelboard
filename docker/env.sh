@@ -1,2 +1,0 @@
-export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk-0.10.3
