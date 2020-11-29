@@ -1,5 +1,7 @@
 # docker__zephyr__phytec-reelboard
 
+**CURRENTLY UNDER CONSTRUCTION, UPGRADING SYSTEM SETUP**
+
 Contains a Dockerfile for building an docker image and its container for zephyr.  
 
 ![Reelboard Setup](pics/reelboard.jpg)
