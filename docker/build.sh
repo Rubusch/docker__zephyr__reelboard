@@ -1,12 +1,11 @@
 #!/bin/bash -e
 ##
-## resources:
+## references:
 ## https://docs.zephyrproject.org/latest/getting_started/index.html#get-the-source-code
 ##
 
-#!/bin/bash -e
-
-export MY_HOME="/home/$(whoami)"
+export USER="$(whoami)"
+export MY_HOME="/home/${USER}"
 export BUILDDIR="${MY_HOME}/zephyrproject"
 export ZEPHYR_BRANCH="v2.4-branch"
 
@@ -31,6 +30,7 @@ echo "READY."
 echo
 
 
+### TODO review the former setup script
 ### prepare SDK environment
 ##source ~/env.sh
 #
