@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:11
 MAINTAINER Lothar Rubusch <l.rubusch@gmail.com>
 WORKDIR /root
 ENV DEBIAN_FRONTEND=noninteractive
