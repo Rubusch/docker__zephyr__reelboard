@@ -49,30 +49,18 @@ Make sure the device is plugged (/dev/ttyACM0 exists)
 
 ## Target
 
-Building the board support package (bsp) for the target, e.g. the reel board board v2  
+Example of building the board support package (bsp) for the target, e.g. the reel board board v2  
 
 ```
 docker $> ./build.sh
 ```
 
-NB: Make sure, after re-login also execute ``build.sh`` or at least fix all python dependencies are around (TODO improve this?)  
-```
-docker $> cd ~/zephyrproject/zephyr
-docker $> pip3 install -r /home/user/zephyrproject/zephyr/scripts/requirements.txt
-```
 
-Build an example  
+Manually build an example  
 
 ```
 docker $> cd ~/zephyrproject/zephyr
 docker $> west build -p auto -b reel_board_v2 samples/basic/blinky
-```
-
-(opt) Provide an udev rule  
-
-```
-docker $> echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' | sudo tee -a /etc/udev/rules.d/50-cmsis-dap.rules
-docker $> udevadm control --reload-rules
 ```
 
 Setup any serial console, e.g.  
@@ -87,10 +75,20 @@ Flash the target
 docker $> west flash --erase
 ```
 
+
+
+## Miscellaneous
+
+For convenience provide an udev rule, and joint the **plugdev** group  
+
+```
+docker $> echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' | sudo tee -a /etc/udev/rules.d/50-cmsis-dap.rules
+docker $> udevadm control --reload-rules
+```
+
 (opt) Debug the target  
 
 ```
 docker $> west debug
 ```
 
-Use the /dev/ttyACM0 device for debugging the target  
