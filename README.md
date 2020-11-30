@@ -42,31 +42,35 @@ $ docker images
 $ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyACM0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
 ```
 
-Make sure the device is plugged (/dev/ttyACM0 exists)  
-(opt) Appending ``--privileged`` is not _safe_, the docker container is supposed rather to allow for archiving of the toolchain  
-(opt) Append ``/bin/bash`` to enter the current container for debugging  
+Make sure the device is plugged (/dev/ttyS0 exists)  
+NB: Appending ``--privileged`` is not _safe_! Mainly this is used for such things as connecting the USB (SEGGER) the easiest way possible.  
+NB: Append ``/bin/bash`` to enter the current container for debugging  
 
 
 ## Target
 
-Example of building the board support package (bsp) for the target, e.g. the reel board board v2  
+#### Build example
+
+Example of building the board support package (bsp) for the target, e.g. the reelboard v2  
 
 ```
 docker $> ./build.sh
 ```
 
+NB: after re-login needs to execute ``build.sh`` or at least fix all python dependencies are around (TODO to be improved)  
 
-Manually build an example  
+
+#### Manually build an example  
 
 ```
 docker $> cd ~/zephyrproject/zephyr
 docker $> west build -p auto -b reel_board_v2 samples/basic/blinky
 ```
 
-Setup any serial console, e.g.  
+Serial console 
 
 ```
-docker $> minicom -D <tty_device> -b 115200
+docker $> minicom -D /dev/ttyS0 -b 115200
 ```
 
 Flash the target  
@@ -74,7 +78,6 @@ Flash the target
 ```
 docker $> west flash --erase
 ```
-
 
 
 ## Miscellaneous
