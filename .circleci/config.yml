@@ -5,11 +5,5 @@ jobs:
    steps:
      - checkout
 
-     # start proprietary DB using private Docker image
-     # with credentials stored in the UI
-     #- run: |
-     #    echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-     #    docker run -d --name db company/proprietary-db:1.2.3
-
      # build the application image
      - run: cd ./docker && docker build --build-arg USER=$(whoami) -t rubuschl/zephyr-reelboard:123 .
