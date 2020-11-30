@@ -113,7 +113,7 @@ RUN mkdir -p /home/$USER/.local/bin && chown $USER:$USER -R /home/$USER/.local
 
 ## setup west in 'zephyrproject'
 RUN cd /home/$USER && sudo su $USER -c "export PATH=/home/${USER}/.local/bin:${PATH} && pip3 install --user -U west"
-RUN cd /home/$USER/ && sudo su $USER -c "west init zephyrproject"
+RUN test ! -d /home/${USER}/zephyrproject/.west && cd /home/$USER/ && sudo su $USER -c "west init zephyrproject"
 RUN cd /home/$USER/zephyrproject && sudo su $USER -c "west update"
 RUN cd /home/$USER/zephyrproject && sudo su $USER -c "west zephyr-export"
 
