@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/Rubusch/docker__zephyr__reelboard.svg?style=shield)](https://circleci.com/gh/Rubusch/docker__zephyr__reelboard)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
 # docker__zephyr__phytec-reelboard
 
 Contains a Dockerfile for building an docker image and its container for zephyr.  
