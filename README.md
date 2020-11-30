@@ -25,7 +25,7 @@ https://www.phytec.eu/product-eu/internet-of-things/reelboard/
 
 ```
 $ cd ./docker/
-$ time docker build --build-arg USER=$USER -t rubuschl/zephyr-reel-board:$(date +%Y%m%d%H%M%S) .
+$ time docker build --build-arg USER=$USER -t rubuschl/zephyr-reelboard:$(date +%Y%m%d%H%M%S) .
 ```
 
 (opt) Append ``--no-cache`` for really re-building the container, which may fix some build bugs  
@@ -38,10 +38,10 @@ In case of Tag **20191104161353**, enter the container or simply build leaving o
 ```
 $ docker images
     REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-    rubuschl/zephyr-reel-board    20191104161353      cbf4cb380168        24 minutes ago      10.5GB
+    rubuschl/zephyr-reelboard    20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyACM0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyrproject:/home/$USER/zephyrproject rubuschl/zephyr-reel-board:20191104161353 /bin/bash
+$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyACM0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
 ```
 
 Make sure the device is plugged (/dev/ttyACM0 exists)
