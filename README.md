@@ -20,7 +20,8 @@ Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` insid
 https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html  
 https://www.phytec.eu/product-eu/internet-of-things/reelboard/  
 
-
+Nordec's ARM-CortexM4 nRF52840 datasheet  
+https://infocenter.nordicsemi.com/pdf/nRF52840_OPS_v0.5.pdf
 
 ## Build
 
