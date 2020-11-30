@@ -43,11 +43,11 @@ $ docker images
     rubuschl/zephyr-reelboard    20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyS0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
+$ docker run --rm -ti --privileged --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyS0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
 ```
 
 Make sure the device is plugged (/dev/ttyS0 exists)  
-NB: Appending ``--privileged`` is not _safe_! Mainly this is used for such things as connecting the USB (SEGGER) the easiest way possible.  
+NB: Appending ``--privileged`` is not _safe_! Mainly this is used for such things as connecting the USB (nRF tools) the easiest way possible.  
 NB: Append ``/bin/bash`` to enter the current container for debugging  
 
 
@@ -92,3 +92,5 @@ Debug the target
 ```
 docker $> west debug
 ```
+
+The Issue: "Waiting for a debug probe to be connected..." is typical for either connected on the wrong USB port, or not running with enough permissions (i.e. without ``--privileged``). Additionally then the udev rule (see references) and membership to the group **plugdev** are needed, which means still a bit work around until this is fixed in the container.  
