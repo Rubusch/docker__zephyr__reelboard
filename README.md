@@ -42,7 +42,7 @@ $ docker images
     rubuschl/zephyr-reelboard    20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyACM0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
+$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER --device=/dev/ttyS0 -v $PWD/configs:/home/$USER/configs -v $PWD/zephyr:/home/$USER/zephyrproject/zephyr rubuschl/zephyr-reelboard:20191104161353 /bin/bash
 ```
 
 Make sure the device is plugged (/dev/ttyS0 exists)  
@@ -70,13 +70,7 @@ docker $> cd ~/zephyrproject/zephyr
 docker $> west build -p auto -b reel_board_v2 samples/basic/blinky
 ```
 
-Serial console 
-
-```
-docker $> minicom -D /dev/ttyS0 -b 115200
-```
-
-Flash the target  
+Flashing the target  
 
 ```
 docker $> west flash --erase
@@ -84,6 +78,13 @@ docker $> west flash --erase
 
 
 ## Miscellaneous
+
+
+Serial console 
+
+```
+docker $> minicom -D /dev/ttyS0 -b 115200
+```
 
 For convenience provide an udev rule, and joint the **plugdev** group  
 
