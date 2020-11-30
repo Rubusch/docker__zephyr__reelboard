@@ -17,8 +17,8 @@ Implicitely will run ```git clone https://github.com/Rubusch/zephyr.git``` insid
 
 ## References
 
-https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html
-https://www.phytec.eu/product-eu/internet-of-things/reelboard/
+https://docs.zephyrproject.org/latest/boards/arm/reel_board/doc/index.html  
+https://www.phytec.eu/product-eu/internet-of-things/reelboard/  
 
 
 
@@ -86,16 +86,8 @@ Serial console
 docker $> minicom -D /dev/ttyS0 -b 115200
 ```
 
-For convenience provide an udev rule, and joint the **plugdev** group  
-
-```
-docker $> echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' | sudo tee -a /etc/udev/rules.d/50-cmsis-dap.rules
-docker $> udevadm control --reload-rules
-```
-
-(opt) Debug the target  
+Debug the target  
 
 ```
 docker $> west debug
 ```
-
