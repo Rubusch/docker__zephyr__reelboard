@@ -12,6 +12,8 @@ ARG USER="${USER}"
 #ARG ZEPHYR_BRANCH="reel-board"
 ARG ZEPHYR_BRANCH="v2.4-branch"
 ARG ZEPHYR_SDK_VERSION="0.11.4"
+ARG ZEPHYR_NRF_VERSION="10_12_0"
+ARG ZEPHYR_NRF_PACKAGE="nRFCommandLineTools10120Linuxamd64tar.gz"
 
 
 ################################################################################
@@ -79,6 +81,10 @@ RUN useradd "$USER" -m --password "$USER"
 RUN usermod -a -G sudo "$USER"
 RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
+## udev permissions
+RUN echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' > /etc/udev/rules.d/50-cmsis-dap.rules
+RUN usermod -aG plugdev $USER
+
 
 ################################################################################
 ## specific: board settings
@@ -130,12 +136,16 @@ RUN cd /home/$USER && sudo su $USER -c "wget https://github.com/zephyrproject-rt
 RUN cd /home/$USER && sudo su $USER -c "chmod +x zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run"
 RUN cd /home/$USER && sudo su $USER -c "./zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run -- -d /usr/local/zephyr-sdk-${ZEPHYR_SDK_VERSION}"
 RUN cd /home/$USER && sudo su $USER -c "rm -rf ./zephyr-sdk-${ZEPHYR_SDK_VERSION}-setup.run"
-#RUN cd /home/$USER && sudo su $USER -c "sudo cp ~/zephyr-sdk-${ZEPHYR_SDK_VERSION}/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d"
-#RUN cd /home/$USER && sudo su $USER -c "sudo udevadm control --reload"
 
 ### (opt) set up 'unset preset flags' command script
 RUN echo 'unset CFLAGS CXXFLAGS' >> /etc/profile.d/unset_cflags.sh
 
+## setup nRF tools
+RUN cd /home/$USER && wget https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-command-line-tools/sw/Versions-10-x-x/10-12-0/${ZEPHYR_NRF_PACKAGE}
+RUN cd /home/$USER && mv ${ZEPHYR_NRF_PACKAGE} ${ZEPHYR_NRF_PACKAGE}.tar.gz && tar xzf ${ZEPHYR_NRF_PACKAGE}.tar.gz
+RUN rm -rf /home/$USER/${ZEPHYR_NRF_PACKAGE}.tar.gz
+RUN cd /home/$USER && dpkg -i --force-overwrite ./nRF-Command-Line-Tools_${ZEPHYR_NRF_VERSION}_Linux-amd64.deb
+RUN cd /home/$USER && dpkg -i --force-overwrite ./JLink_Linux_V688a_x86_64.deb
 
 ################################################################################
 ## command mode
