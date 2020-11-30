@@ -9,7 +9,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ## in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER=$USER
 ARG USER="${USER}"
 
-#ARG ZEPHYR_RISCV_BRANCH="reel-board"
+#ARG ZEPHYR_BRANCH="reel-board"
+ARG ZEPHYR_BRANCH="v2.4-branch"
 ARG ZEPHYR_SDK_VERSION="0.11.4"
 
 
@@ -107,20 +108,18 @@ RUN chown $USER:$USER -R /home/$USER
 
 ## prepare environment
 RUN cd /home/$USER && sudo su $USER -c "mkdir -p /home/$USER/zephyrproject"
-RUN cd /home/$USER && sudo su $USER -c "mkdir -p /home/$USER/profile.d"
 RUN ln -s /usr/local /home/$USER/.local && chown $USER:$USER -R /usr/local
 RUN mkdir -p /home/$USER/.local/bin && chown $USER:$USER -R /home/$USER/.local
 
 
 ## setup west in 'zephyrproject'
 RUN cd /home/$USER && sudo su $USER -c "export PATH=/home/${USER}/.local/bin:${PATH} && pip3 install --user -U west"
-
 RUN cd /home/$USER/ && sudo su $USER -c "west init zephyrproject"
 RUN cd /home/$USER/zephyrproject && sudo su $USER -c "west update"
 RUN cd /home/$USER/zephyrproject && sudo su $USER -c "west zephyr-export"
 
 ### (1/2) use zephyr sources to install python requirements, then remove it again (will be mounted from outside)
-RUN cd /home/$USER/zephyrproject && sudo su $USER -c "git clone --branch ${ZEPHYR_BRANCH} https://github.com/Rubusch/zephyr.git"
+#RUN rm -rf /home/$USER/zephyrproject/zephyr && cd /home/$USER/zephyrproject && sudo su $USER -c "git clone --branch ${ZEPHYR_BRANCH} https://github.com/Rubusch/zephyr.git"
 
 RUN cd /home/$USER/zephyrproject && sudo su $USER -c "pip3 install --user -r zephyr/scripts/requirements.txt"
 
@@ -136,7 +135,7 @@ RUN cd /home/$USER && sudo su $USER -c "rm -rf ./zephyr-sdk-${ZEPHYR_SDK_VERSION
 #RUN cd /home/$USER && sudo su $USER -c "sudo udevadm control --reload"
 
 ### (opt) set up 'unset preset flags' command script
-RUN cd /home/$USER && sudo su $USER -c "echo 'unset CFLAGS CXXFLAGS' >> /etc/profile.d/unset_cflags.sh"
+RUN echo 'unset CFLAGS CXXFLAGS' >> /etc/profile.d/unset_cflags.sh
 
 
 ################################################################################
