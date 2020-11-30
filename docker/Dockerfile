@@ -83,7 +83,7 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 ## udev permissions
 RUN echo 'ATTR{idProduct}=="0204", ATTR{idVendor}=="0d28", MODE="0666", GROUP="plugdev"' > /etc/udev/rules.d/50-cmsis-dap.rules
-RUN usermod -aG plugdev $USER
+RUN sed -i "/^plugdev.*/s/$/$USER/" /etc/group
 
 
 ################################################################################
